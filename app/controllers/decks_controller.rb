@@ -16,10 +16,9 @@ class DecksController < ApplicationController
     @deck = Deck.new(deck_params)
     @deck.user = current_user
     if @deck.save
-      redirect_to @deck
+      redirect_to @deck, notice: "Deck was successfully created."
     else
-      flash[:error] = "Deck creation failed"
-      render 'new'
+      redirect_to new_deck_path, alert: "Deck was not created successfuly."
     end
   end
 
