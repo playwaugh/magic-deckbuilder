@@ -1,4 +1,5 @@
 class DecksController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @decks = Deck.all
   end
@@ -13,14 +14,12 @@ class DecksController < ApplicationController
 
   def create
     @deck = Deck.new(deck_params)
-    respond_to do |format|
-      if @deck.save
-        format.html { redirect_to event_url(@event), notice: "Deck was successfully created." }
-        format.json { render :show, status: :created, location: @deck }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @deck.errors, status: :unprocessable_entity }
-      end
+    @deck.user = current_user
+    if @deck.save
+      redirect_to @deck
+    else
+      flash[:error] = "Deck creation failed"
+      render 'new'
     end
   end
 
