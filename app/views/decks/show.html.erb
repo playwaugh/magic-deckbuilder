@@ -1,2 +1,5 @@
 <%= @deck.title %>
 <%= @deck.description %>
+
+<%= link_to "Edit deck", edit_deck_path(@deck) %>
+<%= link_to "Delete deck", deck_path(@deck), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete?"} %>

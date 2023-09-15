@@ -1,5 +1,6 @@
 class Deck < ApplicationRecord
-  has_many :cards, dependent: :destroy
+  has_many :cards
   belongs_to :user
-  validates :title, :description, presence: true
+  validates :title, presence: true, length: { maximum: 255 }
+  validates :description, presence: true
 end

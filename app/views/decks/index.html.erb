@@ -1,4 +1,6 @@
 <% @decks.each do |deck| %>
   <%= deck.title %>
   <%= deck.description %>
+
+  <%= link_to "View deck", deck_path(deck) %>
 <% end %>
