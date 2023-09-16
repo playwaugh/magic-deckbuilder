@@ -1,7 +1,11 @@
-<%= @deck.title %>
-<%= @deck.description %>
+<div class="bg-white shadow-md rounded-lg p-4 mb-4">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-2"><%= @deck.title %></h2>
+  <p class="text-gray-600"><%= @deck.description %></p>
 
-<% if @deck.user == current_user %>
-  <%= link_to "Edit deck", edit_deck_path(@deck) %>
-  <%= link_to "Delete deck", deck_path(@deck), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete?"} %>
-<% end %>
+  <% if @deck.user == current_user %>
+    <div class="mt-4">
+      <%= link_to "Edit deck", edit_deck_path(@deck), class: "px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mr-2" %>
+      <%= link_to "Delete deck", deck_path(@deck), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete?"} , class: "px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" %>
+    </div>
+  <% end %>
+</div>
