@@ -1,0 +1,14 @@
+<% if @cards.any? %>
+  <div class="card-images">
+    <% @cards.each do |card| %>
+      <div class="card-image">
+        <p>
+        <%= card.id %>
+        </p>
+        <img src="<%= card.image %>" alt="<%= card.name %>" />
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No cards found.</p>
+<% end %>
